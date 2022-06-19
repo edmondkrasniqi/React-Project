@@ -1,6 +1,13 @@
 import { Button, TextField } from "@mui/material";
+import { useLoginFormik } from "../lib/hooks/useLoginFormik";
 
 export const Login = () => {
+  const formik = useLoginFormik({
+    onSubmit(values, formikHelpers) {
+      console.info("values", values);
+    },
+  });
+
   return (
     <div
       style={{
@@ -9,6 +16,7 @@ export const Login = () => {
     >
       <h1>Login Form</h1>
       <form
+        onSubmit={formik.handleSubmit}
         style={{
           display: "flex",
           flexDirection: "column",
