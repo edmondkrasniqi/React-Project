@@ -25,9 +25,7 @@ export const useLoginFormik = (props: UseLoginFormOptions) => {
       username: "",
       password: "",
     },
-    validateOnBlur: false,
-    validateOnChange: true,
-    validationSchema: LoginSchema,
+
     onSubmit: props.onSubmit,
   });
 };
