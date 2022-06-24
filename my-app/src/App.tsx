@@ -8,7 +8,8 @@ function App() {
   return authContext.user !== null ? (
     <Home user={authContext.user} />
   ) : (
-    <Login onLogin={authContext.onLogin} />
+    <Login />
+    // onLogin={authContext.onLogin
   );
 }
 

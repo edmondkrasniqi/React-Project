@@ -2,11 +2,11 @@ import { useAuthContext } from "../../lib/context/AuthContext/AuthContext";
 import { useLoginFormik } from "../../lib/hooks/useLoginFormik";
 import { LoginForm } from "./LoginForm";
 
-interface Props {
-  onLogin: (username: string) => void;
-}
+// interface Props {
+//   onLogin: (username: string) => void;
+// }
 
-export const Login = (props: Props) => {
+export const Login = () => {
   const authContext = useAuthContext();
 
   const formik = useLoginFormik({
