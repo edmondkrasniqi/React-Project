@@ -1,27 +1,15 @@
-import { useState } from "react";
-import { Login } from "./components/Login/Login";
 import { Home } from "./components/Home/Home";
+import { Login } from "./components/Login/Login";
+import { useAuthContext } from "./lib/context/AuthContext/AuthContext";
 
 function App() {
-  const [user, setUser] = useState<string | null>(() => {
-    const value = localStorage.getItem("user");
+  const authContext = useAuthContext();
 
-    return value;
-  });
-
-  const handleLogout = () => {
-    setUser(null);
-    localStorage.removeItem("user");
-  };
-  const handleLogin = (username: string) => {
-    setUser(username);
-    localStorage.setItem("user", username);
-  };
-
-  return user !== null ? (
-    <Home user={user} onLogout={handleLogout} />
+  return authContext.user !== null ? (
+    <Home user={authContext.user} />
   ) : (
-    <Login onLogin={handleLogin} />
+    <Login onLogin={authContext.onLogin} />
   );
 }
+
 export default App;

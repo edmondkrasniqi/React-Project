@@ -1,12 +1,17 @@
+import { useAuthContext } from "../../lib/context/AuthContext/AuthContext";
 import { useLoginFormik } from "../../lib/hooks/useLoginFormik";
 import { LoginForm } from "./LoginForm";
+
 interface Props {
   onLogin: (username: string) => void;
 }
+
 export const Login = (props: Props) => {
+  const authContext = useAuthContext();
+
   const formik = useLoginFormik({
-    onSubmit: (values) => {
-      props.onLogin(values.username);
+    onSubmit(values) {
+      authContext.onLogin(values.username);
     },
   });
 
