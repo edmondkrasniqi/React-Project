@@ -6,10 +6,10 @@ function App() {
   const authContext = useAuthContext();
 
   return authContext.user !== null ? (
-    <Home user={authContext.user} />
+    <Home />
   ) : (
     <Login />
-    // onLogin={authContext.onLogin
+    // onLogin={authContext.onLogin}
   );
 }
 

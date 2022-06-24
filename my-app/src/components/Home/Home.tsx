@@ -1,12 +1,14 @@
 import { Box, Toolbar } from "@mui/material";
 import { Header } from "../../layout/Header/Header";
 import { Sidebar } from "../../layout/Sidebar/Sidebar";
+import { useAuthContext } from "../../lib/context/AuthContext/AuthContext";
 
-interface Props {
-  user: string;
-}
+// interface Props {
+//   user: string;
+// }
 
-export const Home = ({ user }: Props) => {
+export const Home = () => {
+  const authContext = useAuthContext();
   return (
     <Box
       sx={{
@@ -24,7 +26,7 @@ export const Home = ({ user }: Props) => {
         }}
       >
         <Toolbar />
-        <h1>Welcome {user.split("@")[0]}!</h1>
+        <h1>Welcome {authContext.user?.split("@")[0]}!</h1>
       </Box>
     </Box>
   );
