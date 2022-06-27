@@ -22,7 +22,7 @@ export const AuthContextProvider = (props: Props) => {
   };
 
   const context: AuthContextFields = {
-    user: user,
+    user,
     onLogin: handleLogin,
     onLogout: handleLogout,
   };

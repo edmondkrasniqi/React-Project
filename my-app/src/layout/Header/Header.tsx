@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../../lib/context/AuthContext/AuthContext";
 
 // interface Props {
@@ -36,7 +37,9 @@ export const Header = () => {
             }}
           >
             <li>My Movies</li>
-            <li>My Profile</li>
+            <li>
+              <NavLink to="/my-profile"> My Profile </NavLink>
+            </li>
             <li
               onClick={authContext.onLogout}
               style={{

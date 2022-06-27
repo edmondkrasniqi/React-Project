@@ -1,14 +1,18 @@
 import { Box, Toolbar } from "@mui/material";
-import { Header } from "../../layout/Header/Header";
-import { Sidebar } from "../../layout/Sidebar/Sidebar";
-import { useAuthContext } from "../../lib/context/AuthContext/AuthContext";
+import { Navigate } from "react-router-dom";
+import { Header } from "../../../layout/Header/Header";
+import { Sidebar } from "../../../layout/Sidebar/Sidebar";
+import { useAuthContext } from "../../../lib/context/AuthContext/AuthContext";
 
 // interface Props {
 //   user: string;
 // }
 
 export const Home = () => {
-  const authContext = useAuthContext();
+  const { user } = useAuthContext();
+  if (user === null) {
+    return <Navigate to="/login" />;
+  }
   return (
     <Box
       sx={{
@@ -26,7 +30,7 @@ export const Home = () => {
         }}
       >
         <Toolbar />
-        <h1>Welcome {authContext.user?.split("@")[0]}!</h1>
+        <h1>Welcome {user?.split("@")[0]}!</h1>
       </Box>
     </Box>
   );
