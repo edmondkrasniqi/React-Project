@@ -1,5 +1,5 @@
-import { useSignupFormik } from "../../../lib/hooks/useSignupFormik";
-import { SignupForm } from "../../Signup/SignUpForm";
+import { useSignupFormik } from "../../lib/hooks/useSignupFormik";
+import { SignupForm } from "../../components/Signup/SignUpForm";
 import { useNavigate } from "react-router-dom";
 
 export const Signup = () => {

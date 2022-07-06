@@ -1,6 +1,7 @@
 import {
   Button,
   FormControl,
+  FormHelperText,
   Grid,
   InputLabel,
   MenuItem,
@@ -62,16 +63,15 @@ export const SignupForm = ({ formik }: Props) => {
               placeholder="Enter your email"
               name="email"
               value={formik.values.email}
-              error={Boolean(formik.errors.email) && formik.touched.email}
+              error={!!formik.errors.email && formik.touched.email}
+              helperText={formik.errors.email && formik.touched.email}
             />
-            {formik.touched.email && formik.errors.email ? (
-              <div>{formik.errors.email}</div>
-            ) : null}
             <FormControl
               component="fieldset"
               error={Boolean(formik.errors.gender) && formik.touched.gender}
             >
               <FormLabel component="legend">Gender</FormLabel>
+
               <RadioGroup
                 onChange={formik.handleChange}
                 aria-label="gender"
@@ -90,10 +90,13 @@ export const SignupForm = ({ formik }: Props) => {
                   label="Male"
                 />
               </RadioGroup>
-              {formik.touched.gender && formik.errors.gender ? (
-                <div>{formik.errors.gender}</div>
-              ) : null}
+              {formik.errors.gender && formik.touched.gender && (
+                <FormHelperText sx={{ color: "red", fontsize: "12px" }}>
+                  {formik.errors.gender}
+                </FormHelperText>
+              )}
             </FormControl>
+
             <TextField
               fullWidth
               label="Age"
@@ -103,6 +106,7 @@ export const SignupForm = ({ formik }: Props) => {
               value={formik.values.age}
               placeholder="Please Enter your age"
               error={Boolean(formik.errors.age) && formik.touched.age}
+              helperText={formik.errors.age && formik.touched.age}
             />
             {formik.touched.age && formik.errors.age ? (
               <div>{formik.errors.age}</div>
@@ -110,9 +114,7 @@ export const SignupForm = ({ formik }: Props) => {
             <FormControl
               style={marginTop}
               fullWidth
-              error={
-                Boolean(formik.errors.preferences) && formik.touched.preferences
-              }
+              error={!!formik.errors.preferences && formik.touched.preferences}
             >
               <InputLabel>Preferences</InputLabel>
               <Select
@@ -129,9 +131,6 @@ export const SignupForm = ({ formik }: Props) => {
                 <MenuItem value={"other"}>Other</MenuItem>
               </Select>
             </FormControl>
-            {formik.touched.preferences && formik.errors.preferences ? (
-              <div>{formik.errors.preferences}</div>
-            ) : null}
 
             <TextField
               autoComplete="off"
@@ -144,10 +143,8 @@ export const SignupForm = ({ formik }: Props) => {
               onChange={formik.handleChange}
               value={formik.values.password}
               error={Boolean(formik.errors.password) && formik.touched.password}
+              helperText={formik.errors.password && formik.touched.password}
             />
-            {formik.touched.password && formik.errors.password ? (
-              <div>{formik.errors.password}</div>
-            ) : null}
             <TextField
               autoComplete="off"
               style={marginTop}
@@ -162,11 +159,11 @@ export const SignupForm = ({ formik }: Props) => {
                 Boolean(formik.errors.confirmPassword) &&
                 formik.touched.confirmPassword
               }
+              helperText={formik.errors.email && formik.touched.email}
             />
             {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
               <div>{formik.errors.confirmPassword}</div>
             ) : null}
-
             <Button
               type="submit"
               variant="contained"

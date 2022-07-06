@@ -21,26 +21,25 @@ const validationSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .required("Please confirm your password")
     .when("password", {
-      is: (password: string) =>
-        password && password.length > 0 ? true : false,
+      is: (password: string) => password && password.length > 0,
       then: Yup.string().oneOf([Yup.ref("password")], "Password doesn't match"),
     }),
 });
 
-export interface SignupFileds {
+export interface SignupFields {
   username: string;
   age: string;
   email: string;
   password: string;
   confirmPassword: string;
-  gender: "";
-  preferences: "";
+  gender: string;
+  preferences: string;
 }
 
 interface UseSignupFormOptions {
   onSubmit: (
-    values: SignupFileds,
-    formikHelpers: FormikHelpers<SignupFileds>
+    values: SignupFields,
+    formikHelpers: FormikHelpers<SignupFields>
   ) => void;
 }
 
@@ -53,7 +52,6 @@ export const useSignupFormik = (props: UseSignupFormOptions) => {
       email: "",
       confirmPassword: "",
       gender: "",
-
       preferences: "",
     },
     validateOnBlur: true,

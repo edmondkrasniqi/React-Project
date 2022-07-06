@@ -1,10 +1,8 @@
 import { Box } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import { PermissionWrapper } from "../../components/PermissionWrapper.tsx/PermissionWrapper";
 import { useAuthContext } from "../../lib/context/AuthContext/AuthContext";
 
-// interface Props {
-//   onLogout: () => void;
-// }
 export const Header = () => {
   const authContext = useAuthContext();
   return (
@@ -36,10 +34,16 @@ export const Header = () => {
               columnGap: "30px",
             }}
           >
+            <PermissionWrapper role={["admin", "editor"]}>
+              <li>
+                <NavLink to="/admin"> Admin </NavLink>
+              </li>
+            </PermissionWrapper>
             <li>My Movies</li>
             <li>
               <NavLink to="/my-profile"> My Profile </NavLink>
             </li>
+
             <li
               onClick={authContext.onLogout}
               style={{

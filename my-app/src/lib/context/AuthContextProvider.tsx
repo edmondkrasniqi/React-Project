@@ -1,5 +1,6 @@
-import { useState } from "react";
 import { AuthContext, AuthContextFields } from "./AuthContext/AuthContext";
+import { useState } from "react";
+import { Role } from "../ProtectedRoute/RouteWrapper";
 
 interface Props {
   children: React.ReactNode;
@@ -11,6 +12,7 @@ export const AuthContextProvider = (props: Props) => {
     return value;
   });
 
+  const [userRole, setRole] = useState<Role>("admin");
   const handleLogin = (username: string) => {
     setUser(username);
     localStorage.setItem("user", username);
@@ -23,6 +25,7 @@ export const AuthContextProvider = (props: Props) => {
 
   const context: AuthContextFields = {
     user,
+    userRole,
     onLogin: handleLogin,
     onLogout: handleLogout,
   };
